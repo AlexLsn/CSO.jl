@@ -1,7 +1,3 @@
-
-using DataFrames
-
-
 """
     select_site!(df::DataFrame, Site::String, ColSite::String)
 
@@ -32,3 +28,5 @@ Creates a new dataframe containing only the data for the selected site.
 function select_site(df::DataFrame, Site::String, ColSite::String)
     filter(Symbol(ColSite) => x -> x == Site, df)
 end
+
+
