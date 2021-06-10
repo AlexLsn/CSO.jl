@@ -1,5 +1,5 @@
 """
-    addColOverflow!(df::DataFrame, ColDuration::String, NewColCol::String, ColNum::Int64)
+    addColOverflow!(df::DataFrame, ColDuration::String, NewCol::String, ColNum::Int64)
 
 Adds a column of 0's and 1's indicating the absence or presence of overflow using overflows' duration.
 
@@ -9,11 +9,11 @@ Data provided must not contain any missing values for overflows' duration.
 
 - `df::DataFrame`: The dataframe containing the data.
 - `ColDuration::String`: The name of the column of `df` containing the duration of overflows.
-- `NewColCol::String`: The name of the new column of `df` that will contain the 0's and 1's.
-- `ColNum::Int64`: The column number of `NewColCol`.
+- `NewCol::String`: The name of the new column of `df` that will contain the 0's and 1's.
+- `ColNum::Int64`: The column number of `NewCol`.
 """
-function addColOverflow!(df::DataFrame, ColDuration::String, NewColCol::String, ColNum::Int64)
-    insertcols!(df, ColNum, Symbol(NewColCol) => Int.(df[:, Symbol(ColDuration)] .> 0.0))
+function addColOverflow!(df::DataFrame, ColDuration::String, NewCol::String, ColNum::Int64)
+    insertcols!(df, ColNum, Symbol(NewCol) => Int.(df[:, Symbol(ColDuration)] .> 0.0))
 end
 
 """

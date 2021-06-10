@@ -4,8 +4,8 @@
     site = "4420-01D"
     ColSite = "Site"
 
-    @testset "selectSite(data, site, ColSite)"
-        newDF = selectSite(data, site, ColSite)
+    @testset "selectSite(df, Site, ColSite)"
+        newDF = selectSite(df = data, Site = site, ColSite = ColSite)
         selectedSite = newDF[:, Symbol(Site)]
 
         #New Df contains only the selected site
@@ -15,8 +15,8 @@
         @test data != newDF
     end
 
-    @testset "selectSite!(data, site, ColSite)"
-        transformedDF = selectSite!(data, site, ColSite)
+    @testset "selectSite!(df, Site, ColSite)"
+        transformedDF = selectSite!(df = data, Site = site, ColSite = ColSite)
         selectedSite = transformedDF[:, Symbol(Site)]
 
         #Df contains only the selected site
