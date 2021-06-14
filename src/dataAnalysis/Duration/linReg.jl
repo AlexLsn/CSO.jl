@@ -1,2 +1,3 @@
-include(joinpath("linReg"), chosenVariables.jl)
-include(joinpath("linReg"), research.jl)
+include(joinpath("linReg", "research.jl"))
+include(joinpath("linReg", "chosenVariables.jl"))
+
