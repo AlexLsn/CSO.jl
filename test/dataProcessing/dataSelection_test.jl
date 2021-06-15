@@ -1,8 +1,8 @@
 #test passed
 
 @testset "dataSelection.jl" begin
-    data_surv = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
-    data_trudeau = DataFrame(CSV.File("C:\\Users\\Alexandrine\\Montreal-Trudeau_15min_precipitations.csv"))
+    data_surv = CSO.dataset("cso_raw")
+    data_trudeau = CSO.dataset("Montreal-Trudeau_15min_precipitations")
     data = innerjoin(data_surv, data_trudeau, on=:Date)
 
     dropmissing!(data, :Duration)

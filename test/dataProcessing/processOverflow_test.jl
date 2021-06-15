@@ -2,11 +2,11 @@
 
 @testset "processOverflow.jl" begin
 
-    data = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
+    data = CSO.dataset("cso_raw")
     dropmissing!(data, :Duration)
 
     @testset "addColOverflow!(df, ColDuration, NewCol, ColNum)" begin
-        data = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
+        data = CSO.dataset("cso_raw")
         dropmissing!(data, :Duration)
         transformedDF = addColOverflow!(data, "Duration", "Surverse", 3)
 
@@ -22,7 +22,7 @@
 
 
     @testset "countOverflow(df, ColOverflow, Print=true)" begin
-        data = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
+        data = CSO.dataset("cso_raw")
         dropmissing!(data, :Duration)
         DF = addColOverflow!(data, "Duration", "Surverse", 3)
         result = countOverflow(DF, "Surverse", false)

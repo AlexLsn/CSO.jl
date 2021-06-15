@@ -2,7 +2,7 @@
 
 @testset "predByMean.jl" begin
 
-    data = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
+    data = CSO.dataset("cso_raw")
     dropmissing!(data, :Duration)
     train, test = train_test_year(data, 2020)
     topredict = "Duration"

@@ -4,6 +4,7 @@ using DataFrames, CSV, Dates, StatsBase, MLBase, GLM, Combinatorics, DecisionTre
 
 include("dataProcessing.jl")
 include("dataAnalysis.jl")
+include("data.jl")
 
 
 export

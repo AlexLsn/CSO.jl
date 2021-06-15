@@ -14,7 +14,6 @@ function causedBy!(df::DataFrame, ColCause::String, causes::Union{String, Vector
 end
 
 
-
 """
     causedBy(df::DataFrame, ColCause::String, causes::Union{String, Vector{String}})
 

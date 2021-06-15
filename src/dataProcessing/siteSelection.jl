@@ -1,5 +1,5 @@
 """
-    select_site!(df::DataFrame, Sites::Union{String, Vector{String}}, ColSite::String)
+    selectSite!(df::DataFrame, Sites::Union{String, Vector{String}}, ColSite::String)
 
 Filters the data to keep only the selected sites.
 
@@ -9,13 +9,13 @@ Filters the data to keep only the selected sites.
 - `ColSite::String`: The name of the column of `df` containing the sites.
 - `Site::Union{String, Vector{String}}`: The names of the selected sites.
 """
-function select_site!(df::DataFrame, Sites::Union{String, Vector{String}}, ColSite::String)
+function selectSite!(df::DataFrame, Sites::Union{String, Vector{String}}, ColSite::String)
     filter!(Symbol(ColSite) => x -> x in Sites, df)
 end
 
 
 """
-    select_site(df::DataFrame, Sites::String, ColSite::Union{String, Vector{String}})
+    selectSite(df::DataFrame, Sites::String, ColSite::Union{String, Vector{String}})
 
 Creates a new dataframe containing only the data for the selected sites.
 
@@ -25,6 +25,6 @@ Creates a new dataframe containing only the data for the selected sites.
 - `ColSite::String`: The name of the column of `df` containing the sites.
 - `Site::Union{String, Vector{String}}`: The names of the selected sites.
 """
-function select_site(df::DataFrame, Sites::Union{String, Vector{String}}, ColSite::String)
+function selectSite(df::DataFrame, Sites::Union{String, Vector{String}}, ColSite::String)
     filter(Symbol(ColSite) => x -> x in Sites, df)
 end
