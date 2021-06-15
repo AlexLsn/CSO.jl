@@ -1,6 +1,6 @@
 module CSO
 
-using DataFrames, CSV, Pipe, Dates, Random, StatsBase, Plots, MLBase, GLM, GLMNet, Combinatorics
+using DataFrames, CSV, Dates, StatsBase, MLBase, GLM, Combinatorics, DecisionTree
 
 include("dataProcessing.jl")
 include("dataAnalysis.jl")
@@ -12,7 +12,7 @@ export
     causeSelection, causeSelection!,
     
     #Selection of sites
-    siteSelection, siteSelection!,
+    selectSite, selectSite!,
 
     #Selection and filtering of specific data
     pctOnly, pctOnly!, 
@@ -23,6 +23,9 @@ export
 
     #Overflow pre-processing
     addColOverflow!, countOverflow,
+
+    #Taking into account the rain of the previous day
+    addColRainYday!,
 
     #test by year
     train_test_year,
