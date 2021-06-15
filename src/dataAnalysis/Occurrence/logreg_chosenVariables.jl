@@ -21,3 +21,4 @@ function logreg(topredict::String, varnames::Vector{Symbol}, train::DataFrame, t
     
     Fscore ? (return maximum(f1score.(r))) : return Ŷ
 end
+

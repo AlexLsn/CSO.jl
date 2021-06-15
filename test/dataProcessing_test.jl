@@ -1,0 +1,5 @@
+include(joinpath("dataProcessing", "anomalies_test.jl"))
+include(joinpath("dataProcessing", "causeSelection_test.jl"))
+include(joinpath("dataProcessing", "dataSelection_test.jl"))
+include(joinpath("dataProcessing", "processOverflow_test.jl"))
+include(joinpath("dataProcessing", "siteSelection_test.jl"))

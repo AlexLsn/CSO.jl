@@ -1,6 +1,10 @@
-using SURVERSES
+using CSO
 using Test
 
-@testset "SURVERSES.jl" begin
-    # Write your tests here.
+using DataFrames, CSV, Pipe, Dates, Random, StatsBase, Plots, MLBase, GLM, GLMNet, Combinatorics
+
+
+@testset "CSO.jl" begin
+    include("dataAnalysis_test.jl")
+    include("dataProcessing_test.jl")
 end

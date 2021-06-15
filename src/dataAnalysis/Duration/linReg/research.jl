@@ -41,7 +41,7 @@ Selects the best set of explanatory variables after performing a forward feature
 - `verbose::Bool=true`: whether to print the sequence of inclusions and exclusions. Default = true.
 """
 
-function stepRMSD_linreg(topredict::String, varnames::Vector{Symbol}, initial_list::T where T<:Vector{Any}, train::DataFrame, test::DataFrame, verbose::Bool=true)
+function stepRMSD_linreg(topredict::String, varnames::Vector{Symbol}, initial_list::Union{Vector{Symbol}, Vector{Any}}, train::DataFrame, test::DataFrame, verbose::Bool=true)
     included = initial_list
     while true
         changed=false
@@ -80,9 +80,9 @@ function stepRMSD_linreg(topredict::String, varnames::Vector{Symbol}, initial_li
         
         if changed == false
             println("RMSD: $(ex_RMSD)")
-            return included
+            return convert(Vector{Symbol}, included)
             break
         end
     end
-    return included
+    return convert(Vector{Symbol}, included)
 end

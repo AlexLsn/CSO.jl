@@ -1,20 +1,26 @@
-"""
-    linreg(topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame, RMSD::Bool=true)
+#test passed
 
-Performs a linear regression with variables from variables and data of D.
+@testset "chosenVariables.jl" begin
 
-# Arguments
+    data_surv = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
+    data_trudeau = DataFrame(CSV.File("C:\\Users\\Alexandrine\\Montreal-Trudeau_15min_precipitations.csv"))
+    data = innerjoin(data_surv, data_trudeau, on=:Date)
+    dropmissing!(data, :Duration)
 
-- `topredict::String`: The name of the column of the dataframe of interest that is to be predicted.
-- `varnames::Vector{Symbol}`: The explanatory variables to include in the regression.
-- `train::DataFrame`: The dataset used to train the model.
-- `test::DataFrame`: The dataset used to test the model.
-- `RMSD::Bool=true`: If true, returns the RMSD of the model. If false, returns the vector of predictions. Default = true.
+    varnames = [:d15min, :d1h]
+    topredict = "Duration"
 
-"""
-function linreg(topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame, RMSD::Bool=true)
+    train, test = train_test_year(data, 2020)
+
     model = lm(Term(Symbol(topredict)) ~ sum(Term.(varnames)), train)
-    predictions = convert(Vector{Float64},GLM.predict(model, test))
-    
-    RMSD ? (return rmsd(predictions, test[:, Symbol(topredict)])) : return predictions
+    predictions = convert(Vector{Float64}, GLM.predict(model, test))
+
+    RMSD = rmsd(predictions, test[:, Symbol(topredict)])
+
+    #The RMSD is well derived
+    @test RMSD == linreg("Duration", [:d15min, :d1h], train, test)
+
+    #Predictions are well derived
+    @test predictions == linreg("Duration", [:d15min, :d1h], train, test, false)
+
 end

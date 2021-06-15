@@ -3,6 +3,8 @@
 
 Deletes rows without precipitation but with overflow.
 
+Data provided must not contain any missing values for overflows' duration or occurrence.
+
 # Arguments
 
 - `df::DataFrame`: The dataframe containing the data.

@@ -1,6 +1,6 @@
 module CSO
 
-using DataFrames, Pipe, Dates, Random, StatsBase, Plots, MLBase, GLM, GLMNet, Combinatorics
+using DataFrames, CSV, Pipe, Dates, Random, StatsBase, Plots, MLBase, GLM, GLMNet, Combinatorics
 
 include("dataProcessing.jl")
 include("dataAnalysis.jl")
@@ -19,7 +19,7 @@ export
     overflowOnly, overflowOnly!,
 
     #delete anomalies
-    #deleteAnomalies!,
+    deleteAnomalies!,
 
     #Overflow pre-processing
     addColOverflow!, countOverflow,
@@ -33,8 +33,8 @@ export
     stepF1_logreg
 
     #Prediction of overflows' duration
-    predByMean, 
-    decisionTree, 
+    pred_mean, 
+    DTree, 
     linreg, 
     CR_linreg, 
     stepRMSD_linreg

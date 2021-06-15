@@ -11,7 +11,6 @@ Derives the RMSD between the test dataset and the mean of the train dataset.
 """
 
 function pred_mean(topredict::String, train::DataFrame, test::DataFrame)
-    diagnostic = DataFrame(Variables = Vector{Symbol}[], F₁ = Float64[])
     predictions = Float64[]
     for i in 1:nrow(test)
         push!(predictions, mean(train[:, Symbol(topredict)]))

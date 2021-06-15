@@ -10,7 +10,6 @@ Performs a linear regression with variables from variables and data of D.
 - `train::DataFrame`: The dataset used to train the model.
 - `test::DataFrame`: The dataset used to test the model.
 - `RMSD::Bool=true`: If true, returns the RMSD of the model. If false, returns the vector of predictions. Default = true.
-
 """
 function linreg(topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame, RMSD::Bool=true)
     model = lm(Term(Symbol(topredict)) ~ sum(Term.(varnames)), train)

@@ -1,21 +1,18 @@
-"""
-    pred_mean(topredict::String, train::DataFrame, test::DataFrame)
+#test passed
 
-Derives the RMSD between the test dataset and the mean of the train dataset.
+@testset "predByMean.jl" begin
 
-# Arguments
+    data = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
+    dropmissing!(data, :Duration)
+    train, test = train_test_year(data, 2020)
+    topredict = "Duration"
 
-- `topredict::String`: The name of the column of the dataframe of interest that is to be predicted.
-- `train::DataFrame`: The dataset used to derive the mean.
-- `test::DataFrame`: The dataset used to test the model.
-"""
+    Mean = mean(train[:, Symbol(topredict)])
+    predictions = [Mean for i in 1:nrow(test)]
 
-function pred_mean(topredict::String, train::DataFrame, test::DataFrame)
-    diagnostic = DataFrame(Variables = Vector{Symbol}[], F₁ = Float64[])
-    predictions = Float64[]
-    for i in 1:nrow(test)
-        push!(predictions, mean(train[:, Symbol(topredict)]))
-    end
-    RMSD = rmsd(predictions, test[:, Symbol(topredict)])
-    return RMSD
+    RMSD = pred_mean(topredict, train, test)
+
+    #The RMSD is well derived
+    @test RMSD == rmsd(predictions, test.Duration)
+
 end

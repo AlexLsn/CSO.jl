@@ -1,29 +1,31 @@
+#test passed
+
 @testset "siteSelection.jl" begin
     
-    data = CSO.dataset("cso_raw")
-    site = "4420-01D"
+    data = DataFrame(CSV.File("C:\\Users\\Alexandrine\\cso_raw.csv"))
     ColSite = "Site"
+    site = "4420-01D"
 
-    @testset "selectSite(df, Site, ColSite)"
-        newDF = selectSite(df = data, Site = site, ColSite = ColSite)
-        selectedSite = newDF[:, Symbol(Site)]
+    @testset "selectSite(df, Site, ColSite)" begin
+        newDF = selectSite(data, site, ColSite)
+        selectedSite = newDF[:, Symbol(ColSite)]
 
         #New Df contains only the selected site
         @test length(unique(selectedSite)) == 1
 
         #Ancient DF has not been changed
-        @test data != newDF
+        @test nrow(data) != nrow(newDF)
     end
 
-    @testset "selectSite!(df, Site, ColSite)"
-        transformedDF = selectSite!(df = data, Site = site, ColSite = ColSite)
-        selectedSite = transformedDF[:, Symbol(Site)]
+    @testset "selectSite!(df, Site, ColSite)" begin
+        transformedDF = selectSite!(data, site, ColSite)
+        selectedSite = transformedDF[:, Symbol(ColSite)]
 
         #Df contains only the selected site
         @test length(unique(selectedSite)) == 1
             
         #Ancient DF has been changed
-        @test data == transformedDF
+        @test nrow(data) == nrow(transformedDF)
     end
     
 end

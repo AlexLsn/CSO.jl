@@ -11,6 +11,7 @@ Tests and ranks (F1 score) all possible set of variables fitting a logistic regr
 - `test::DataFrame`: The dataset used to test the model.
 """
 function CR_logreg(topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame)
+
     diagnostic = DataFrame(Model = Array{Symbol}[], Deviance = Float64[], F₁ = Float64[], k = Int64[])
     threshold = collect(0.1:.01:.6)
     model_var = collect(combinations(varnames))
@@ -29,7 +30,7 @@ end
 
 
 """
-    stepF1_logreg(topredict::String, varnames::Vector{Symbol}, initial_list::Vector{Symbol}, train::DataFrame, test::DataFrame, verbose::Bool=true)
+    stepF1_logreg(topredict::String, varnames::Vector{Symbol}, initial_list::Union{Vector{Symbol}, Vector{Any}}, train::DataFrame, test::DataFrame, verbose::Bool=true)
 
 Performs a forward feature selection with logistic regression selecting on the F1 score.
 
@@ -37,13 +38,13 @@ Performs a forward feature selection with logistic regression selecting on the F
 
 - `topredict::String`: The name of the column of the dataframe of interest that is to be predicted.
 - `varnames::Vector{Symbol}`: The explanatory variables to include in the regression.
-- `initial_list::T where T<:Vector{Any}`: List of features to start with.
+- `initial_list::Union{Vector{Symbol}, Vector{Any}}`: List of features to start with.
 - `train::DataFrame`: The dataset used to train the model.
 - `test::DataFrame`: The dataset used to test the model.
 - `verbose::Bool=true`: whether to print the sequence of inclusions and exclusions. Default = true.
 """
 
-function stepF1_logreg(topredict::String, varnames::Vector{Symbol}, initial_list::T where T<:Vector{Any}, train::DataFrame, test::DataFrame, verbose::Bool=true)
+function stepF1_logreg(topredict::String, varnames::Vector{Symbol}, initial_list::Union{Vector{Symbol}, Vector{Any}}, train::DataFrame, test::DataFrame, verbose::Bool=true)
     included = initial_list
     while true
         changed=false
@@ -85,9 +86,9 @@ function stepF1_logreg(topredict::String, varnames::Vector{Symbol}, initial_list
         
         if changed == false
             println("F1 score: $(ex_F1)")
-            return included
+            return convert(Vector{Symbol}, included)
             break
         end
     end
-    return included
+    return convert(Vector{Symbol}, included)
 end
