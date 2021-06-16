@@ -16,7 +16,7 @@ Returns the tree, the predictions or the RMSD derived from the model in argument
 """
 
 
-function DTree(model::DecisionTreeClassifier, topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame, printTree::Bool=false, predictions::Bool=false, RMSD::Bool=true)
+function DTree(model::DecisionTreeClassifier, topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame, Tree::Bool=false, predictions::Bool=false, RMSD::Bool=true)
     Xtrain = Matrix(train[:,varnames])
     ytrain = train[:, Symbol(topredict)]
     Xtest = Matrix(test[:,varnames])
@@ -33,9 +33,7 @@ function DTree(model::DecisionTreeClassifier, topredict::String, varnames::Vecto
         return predictions_DT
     end
     
-    if printTree
-        ptree = prune_tree(tree.root, .8)
-        SEUIL_CAT1=0.9; SEUIL_CAT3=0.8
-        return pretty_tree(ptree, SEUIL_CAT1, SEUIL_CAT3, varnames)
+    if Tree
+        return tree
     end
 end
