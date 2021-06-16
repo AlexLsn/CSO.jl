@@ -1,5 +1,3 @@
-#test passed
-
 @testset "dataSelection.jl" begin
     data_surv = CSO.dataset("cso_raw")
     data_trudeau = CSO.dataset("Montreal-Trudeau_15min_precipitations")

@@ -1,5 +1,3 @@
-#test passed
-
 @testset "causeSelection.jl" begin
     data = CSO.dataset("cso_raw")
     causes = ["P", "U"]

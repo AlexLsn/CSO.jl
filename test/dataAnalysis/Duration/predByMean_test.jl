@@ -1,5 +1,3 @@
-#test passed
-
 @testset "predByMean.jl" begin
 
     data = CSO.dataset("cso_raw")

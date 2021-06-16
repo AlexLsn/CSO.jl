@@ -1,5 +1,3 @@
-#test passed
-
 @testset "processOverflow.jl" begin
 
     data = CSO.dataset("cso_raw")

@@ -1,5 +1,3 @@
-#test passed
-
 @testset "anomalies.jl" begin
     
     data_surv = CSO.dataset("cso_raw")
