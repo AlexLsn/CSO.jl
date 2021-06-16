@@ -7,8 +7,8 @@
     dropmissing!(data, :Duration)
     addColOverflow!(data, "Duration", "Surverse", 3)
     
-    transformedDF = deleteAnomalies!(data, "Surverse", "d24h")
-    testDF = filter([:Surverse, :d24h] => (x, y) -> (x == 1 && y == 0), transformedDF)
+    transformedDF = deleteAnomalies!(data, "Surverse", "d24h", 2.0)
+    testDF = filter([:Surverse, :d24h] => (x, y) -> (x == 1 && y <= 2), transformedDF)
 
     #There is no day with overflow and without precipitation in the DF
     @test nrow(testDF) == 0
