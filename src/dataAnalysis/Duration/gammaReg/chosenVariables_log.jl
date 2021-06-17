@@ -12,7 +12,7 @@ Performs a gamma regression (InverseLink) on a set of chosen variables with posi
 - `RMSD::Bool=true`: If true, returns the RMSD of the model. If false, returns the vector of predictions. Default = true.
 """
 function gammaReg_log(topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame, RMSD::Bool=true)
-    model = glm(Term(Symbol(topredict)) ~ sum(Term.(variables)), train, Gamma(), LogLink())
+    model = glm(Term(Symbol(topredict)) ~ sum(Term.(varnames)), train, Gamma(), LogLink())
     predictions = convert(Vector{Float64}, GLM.predict(model, test))
 
     RMSD ? (return rmsd(predictions, test[:, Symbol(topredict)])) : return predictions

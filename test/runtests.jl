@@ -1,7 +1,7 @@
 using CSO
 using Test
 
-using DataFrames, CSV, Pipe, Dates, Random, StatsBase, Plots, MLBase, GLM, GLMNet, Combinatorics
+using DataFrames, CSV, Dates, StatsBase, Plots, MLBase, GLM, Combinatorics, DecisionTree
 
 
 @testset "CSO.jl" begin
