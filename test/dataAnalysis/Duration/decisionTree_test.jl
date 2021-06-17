@@ -18,7 +18,7 @@
     RMSD = rmsd(predictions, test.Duration)
 
     #The RMSD is well derived
-    @test RMSD == DTree(model, "Duration", varnames, train, test)
+    @test RMSD ≈ DTree(model, "Duration", varnames, train, test)
 
     #Predictions are well derived
     @test predictions ≈ DTree(model, "Duration", varnames, train, test, false, true, false)
