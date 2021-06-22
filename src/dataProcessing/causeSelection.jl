@@ -1,5 +1,5 @@
 """
-    causedBy!(df::DataFrame, ColCause::String, causes::Union{String, Vector{String}})
+    causedBy!(df::DataFrame, ColCause::String, causes::Vector{String})
 
 Filters the data by keeping only those corresponding to the selected causes of overflows, includes missing.
 
@@ -7,15 +7,21 @@ Filters the data by keeping only those corresponding to the selected causes of o
 
 - `df::DataFrame`: The dataframe containing the data.
 - `ColCause::String`: The name of the column of `df` containing the cause of overflows.
-- `causes::Union{String, Vector{String}}`: The names of the causes of overflows to be kept in `df`.
+- `causes::Vector{String}`: The names of the causes of overflows to be kept in `df`.
 """
-function causedBy!(df::DataFrame, ColCause::String, causes::Union{String, Vector{String}})
+function causedBy!(df::DataFrame, ColCause::String, causes::Vector{String})
+    if typeof(causes) == Vector{String}
+        for i in 1:length(causes)
+            if km
+            end
+        end
+    end
     filter!(Symbol(ColCause) => x -> ismissing(x) || (x in causes), df)
 end
 
 
 """
-    causedBy(df::DataFrame, ColCause::String, causes::Union{String, Vector{String}})
+    causedBy(df::DataFrame, ColCause::String, causes::Vector{String})
 
 Creates a new dataframe with only data corresponding to the selected causes of overflows, includes missing.
 
@@ -23,8 +29,8 @@ Creates a new dataframe with only data corresponding to the selected causes of o
 
 - `df::DataFrame`: The dataframe containing the data.
 - `ColCause::String`: The name of the column of `df` containing the cause of overflows.
-- `causes::Union{String, Vector{String}}`: The names of the causes of overflows to be kept in the new dataframe.
+- `causes::Vector{String}`: The names of the causes of overflows to be kept in the new dataframe.
 """
-function causedBy(df::DataFrame, ColCause::String, causes::Union{String, Vector{String}})
+function causedBy(df::DataFrame, ColCause::String, causes::Vector{String})
     filter(Symbol(ColCause) => x ->  ismissing(x) || (x in causes), df)
 end
