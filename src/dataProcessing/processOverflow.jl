@@ -30,7 +30,7 @@ Returns the number of non-overflows, of overflows, and the percentage of overflo
 function countOverflow(df::DataFrame, ColOverflow::String, Print::Bool=true)
     NO = countmap(df[:, Symbol(ColOverflow)])[0]
     O = countmap(df[:, Symbol(ColOverflow)])[1]
-    Per = O/(NO + O)
+    Per = O/(NO + O)*100
     
     if Print
         println("The number of non-overflows equals $(NO), the number of overflows equals $O, the percentage of overflows equals around $(round(Per, digits=2)) %.")
