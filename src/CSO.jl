@@ -10,7 +10,7 @@ include("data.jl")
 export
 
     #Selection of overflows'causes
-    causeSelection, causeSelection!,
+    causedBy, causedBy!,
     
     #Selection of sites
     selectSite, selectSite!,
