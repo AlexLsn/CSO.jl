@@ -14,7 +14,7 @@ export
     
     #Selection of sites
     selectSite, selectSite!,
-
+    
     #Selection and filtering of specific data
     pctOnly, pctOnly!, 
     overflowOnly, overflowOnly!,
@@ -34,15 +34,11 @@ export
     #Prediction of overflows' occurrence
     logreg, 
     CR_logreg, 
-    stepF1_logreg
+    stepF1_logreg,
 
     #Prediction of overflows' duration
     pred_mean, 
     DTree, 
-    linreg, CR_linreg, stepRMSD_linreg,
-    gammaReg_inv, gammaReg_log, 
-    CR_gammaReg_inv, CR_gammaReg_log,
-    stepRMSD_gammaReg_inv, stepRMSD_gammaReg_log 
-
-
+    linreg, CR_linreg, stepRMSD_linreg
+    
 end
