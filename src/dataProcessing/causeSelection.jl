@@ -10,12 +10,6 @@ Filters the data by keeping only those corresponding to the selected causes of o
 - `causes::Vector{String}`: The names of the causes of overflows to be kept in `df`.
 """
 function causedBy!(df::DataFrame, ColCause::String, causes::Vector{String})
-    if typeof(causes) == Vector{String}
-        for i in 1:length(causes)
-            if km
-            end
-        end
-    end
     filter!(Symbol(ColCause) => x -> ismissing(x) || (x in causes), df)
 end
 
