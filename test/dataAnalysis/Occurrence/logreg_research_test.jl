@@ -25,7 +25,7 @@
     #The df is well sorted
     @test F1 == maximum(result.F₁)
 
-    #The best set of variables found stepwise corresponds to the best set of the CR_logreg
+    #The higher F1 score of the CR_logreg corresponds to the higher found stepwise
     @test F1 == logreg("Surverse", variables, train, test)
 
 end

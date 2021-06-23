@@ -38,7 +38,10 @@ export
 
     #Prediction of overflows' duration
     pred_mean, 
-    DTree, 
-    linreg, CR_linreg, stepRMSD_linreg
+    DTree, RForest,
+    linreg, CR_linreg, stepRMSD_linreg,
+    gammaReg_inv, gammaReg_log, 
+    CR_gammaReg_inv, CR_gammaReg_log, 
+    stepRMSD_gammaReg_inv, stepRMSD_gammaReg_log
     
 end
