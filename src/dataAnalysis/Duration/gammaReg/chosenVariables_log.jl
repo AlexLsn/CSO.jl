@@ -1,7 +1,7 @@
 """
     gammaReg_log(topredict::String, varnames::Vector{Symbol}, train::DataFrame, test::DataFrame, RMSD::Bool=true)
 
-Performs a linear regression with variables from variables and data of D.
+Performs a gamma regression (log link) with variables from variables and data of D.
 
 # Arguments
 
