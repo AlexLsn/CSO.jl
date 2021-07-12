@@ -42,7 +42,7 @@ Selects the best set of explanatory variables after performing a forward feature
 """
 
 function stepRMSD_gammaReg_log(topredict::String, varnames::Vector{Symbol}, initial_list::Union{Vector{Symbol}, Vector{Any}}, train::DataFrame, test::DataFrame, verbose::Bool=true)
-    included = initial_list
+    included = convert(Vector{Symbol}, initial_list)
     while true
         changed=false
         
